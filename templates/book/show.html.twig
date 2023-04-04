@@ -39,11 +39,14 @@
     </table>
 
     <div>
-        <a href="{{ path('app_book_index') }}">back to list</a>
+        <a href="{{ path('app_book_list') }}"><i class="bi bi-arrow-left-circle"> back to list</i></a>
     </div>
-    {# <div>
-        <a href="{{ path('app_back_movie_edit', {'id': movie.id}) }}">edit</a>
-    </div> #}
+    <div>
+        <button type="submit" class="btn btn-success">
+            <a href="{{ path('app_book_edit', {'id': book.id}) }}"><i class="bi bi-pencil"></i> Edit</a>
+        </button>
+    </div>
 
-    {# {{ include('book/_delete_form.html.twig') }} #}
+    {{ include('book/_delete_form.html.twig') }}
 {% endblock %}
+

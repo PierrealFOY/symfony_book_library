@@ -13,6 +13,7 @@
                 <th>Pays</th>
                 {# <th>Image</th> #}
                 {# <th>Rating</th> #}
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,13 +23,11 @@
                 <td>{{ author.name }}</td>
                 <td>{{ author.firstname }}</td>
                 <td>{{ author.country }}</td>
-                {# <td>{{ book.poster }}</td> #}
-                {# <td><img width="30" height="50" src="{{ book.poster }}" alt=""></td> #}
                 {# <td>{{ author.rating }}</td> #}
-                {# <td>
+                <td>
                     <a class="btn btn-success" href="{{ path('app_author_show', {'id': author.id}) }}"><i class="bi bi-eye"></i></a>
                     <a class="btn btn-warning" href="{{ path('app_author_edit', {'id': author.id}) }}"><i class="bi bi-pencil"></i></a>
-                </td> #}
+                </td>
             </tr>
         {% else %}
             <tr>
@@ -37,3 +36,4 @@
         {% endfor %}
         </tbody>
     </table>
+    {% endblock %}

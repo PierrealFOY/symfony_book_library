@@ -3,7 +3,53 @@
 {% block book_menu %}active
 {% endblock %}
 
-{% block title %}Liste des livres
+{% block title %}Liste des livres{% endblock %}
+
+{% block body %}
+    <div class="container m-2">
+        <h1>Liste des livres</h1>
+    </div>
+    <div class="m-3">
+        <a class="btn btn-success"  href="{{ path('app_book_new') }}"><i class="bi bi-journal-plus"></i> Ajouter un livre</a>
+    </div>
+
+    <table class="table m-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Genre</th>
+                <th>Date de sortie</th>
+                <th>Image</th>
+                <th>Note</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.genre }}</td>
+                <td>{{ book.releaseDate ? book.releaseDate|date('Y-m-d') : '' }} ...</td>
+                <td><img width="30" height="50" src="{{ book.poster }}" alt=""></td>
+                <td>{{ book.rating }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_book_show', {'id': book.id}) }}"><i class="bi bi-eye"></i></a>
+                    <a class="btn btn-warning" href="{{ path('app_book_edit', {'id': book.id}) }}"><i class="bi bi-pencil"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}
+
 
 {% block subtitle %}<h2 class="text-muted fw-bold mb-4">Les livres/Résultats de recherche</h2>{% endblock %}

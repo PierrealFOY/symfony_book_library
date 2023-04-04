@@ -27,7 +27,6 @@
                 <td>{{ book.releaseDate ? book.releaseDate|date('Y-m-d') : '' }} ...</td>
                 <td><img width="30" height="50" src="{{ book.poster }}" alt=""></td>
                 <td>{{ book.rating }}</td>
-                <th>Actions</th>
                 <td>
                     <a class="btn btn-success" href="{{ path('app_book_show', {'id': book.id}) }}"><i class="bi bi-eye"></i></a>
                     <a class="btn btn-warning" href="{{ path('app_book_edit', {'id': book.id}) }}"><i class="bi bi-pencil"></i></a>

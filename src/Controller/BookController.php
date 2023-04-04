@@ -20,13 +20,13 @@ class BookController extends AbstractController
         $books = $bookRepository->findAllOrderedByTitle($request->get('search'));
 
         return $this->render('book/list.html.twig', [
-            'book' => 'bookRepository->findAll()',
+            'books' => $bookRepository->findAll(),
             // 'books' => $books,
         ]);
     }
 
     /**
-     * @Route("/livre/ajouter", name="app_book_add", methods={"GET", "POST"})
+     * @Route("/livre/ajouter", name="app_book_new", methods={"GET", "POST"})
      */
     public function add(Request $request, BookRepository $bookRepository): Response
     {
@@ -38,10 +38,12 @@ class BookController extends AbstractController
             
             $bookRepository->add($book, true);
 
+            $this->addFlash('success', "Un nouveau livre a bien été ajouté !");
+
             return $this->redirectToRoute('app_book_list', [], Response::HTTP_SEE_OTHER);  
         }
 
-        return $this->redirectToRoute('book/new.html.twig', [
+        return $this->renderForm('book/new.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);
@@ -65,7 +67,7 @@ class BookController extends AbstractController
     public function edit(Request $request, Book $book, BookRepository $bookRepository): Response
     {
 
-        $form = $this->createForm(BookType::class, (new Book()));
+        $form = $this->createForm(BookType::class, $book);
 
         $form->handleRequest($request);
 
@@ -76,18 +78,23 @@ class BookController extends AbstractController
             return $this->redirectToRoute('app_book_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('book/edit.html.twig', [
-            // 'book' => $book,
-            'form' => $form->createView(),
+        return $this->renderForm('book/edit.html.twig', [
+            'book' => $book,
+            'form' => $form,
         ]);
     }
 
     /**
      * @Route("/livre/supprimer/{id}", name="app_book_delete")
      */
-    public function delete(Book $book, BookRepository $bookRepository): Response
+    public function delete(Request $request, Book $book, BookRepository $bookRepository): Response
     {
-        $bookRepository->delete($book, true);
+        
+        if ($this->isCsrfTokenValid('delete'.$book->getId(), $request->request->get('_token'))) {
+            $bookRepository->remove($book, true);
+        }
+
+        $this->addFlash('danger', "Un livre a été supprimé !");
 
         return $this->redirectToRoute('app_book_list', [], Response::HTTP_SEE_OTHER);
     }

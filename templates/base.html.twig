@@ -4,11 +4,12 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
 
-            <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!-- Bootstrap icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+                    {{ encore_entry_link_tags('app') }}
 
         {% block navbar %}
             <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -21,10 +22,10 @@
                     <div class="collapse navbar-collapse mx-3" id="navbarNav">
                         <ul class="navbar-nav mx-3 ">
                             <li class="nav-item px-3">
-                                <a class="nav-link active" aria-current="page" href="#">Livres</a>
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_book_list') }}">Livres</a>
                             </li>
                             <li class="nav-item px-3">
-                                <a class="nav-link" href="#">Auteurs</a>
+                                <a class="nav-link" href="{{ path('app_author_list') }}">Auteurs</a>
                             </li>
                             <li class="nav-item px-3">
                                 <a class="nav-link" href="#">Avis</a>
@@ -36,6 +37,24 @@
                     </div>
                 </div>
             </nav>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            
+        {% endfor %}
+
+        {% endblock %}
+
+        {% block stylesheets %}
+        
         {% endblock %}
 
     </head>

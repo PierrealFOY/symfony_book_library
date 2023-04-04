@@ -1,0 +1,13 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}Nouvel auteur{% endblock %}
+
+{% block subBody %}
+    <h1>Nouvel auteur</h1>
+
+    {{ include('author/_form.html.twig') }}
+
+    <div class="mt-3">
+        <a href="{{ path('app_author_list') }}">back to list</a>
+    </div>
+{% endblock %}
