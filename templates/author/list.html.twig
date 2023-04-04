@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello bienvenue à la liste des auteurs!{% endblock %}
+
+{% block body %}
+
+<table class="table m-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Pays</th>
+                {# <th>Image</th> #}
+                {# <th>Rating</th> #}
+            </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.firstname }}</td>
+                <td>{{ author.country }}</td>
+                {# <td>{{ book.poster }}</td> #}
+                {# <td><img width="30" height="50" src="{{ book.poster }}" alt=""></td> #}
+                {# <td>{{ author.rating }}</td> #}
+                {# <td>
+                    <a class="btn btn-success" href="{{ path('app_author_show', {'id': author.id}) }}"><i class="bi bi-eye"></i></a>
+                    <a class="btn btn-warning" href="{{ path('app_author_edit', {'id': author.id}) }}"><i class="bi bi-pencil"></i></a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

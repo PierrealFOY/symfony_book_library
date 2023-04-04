@@ -1,0 +1,49 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block subBody %}
+    <h1>Livre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ book.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ book.title }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ book.author }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ book.genre }}</td>
+            </tr>
+            <tr>
+                <th>ReleaseDate</th>
+                <td>{{ book.releaseDate ? book.releaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Poster</th>
+                <td>{{ book.poster }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ book.rating }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a href="{{ path('app_book_index') }}">back to list</a>
+    </div>
+    {# <div>
+        <a href="{{ path('app_back_movie_edit', {'id': movie.id}) }}">edit</a>
+    </div> #}
+
+    {# {{ include('book/_delete_form.html.twig') }} #}
+{% endblock %}

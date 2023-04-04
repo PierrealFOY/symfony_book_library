@@ -1,0 +1,15 @@
+{% if book.rating is null %}
+<p>Le livre n'a pas de notes encore.</p>
+{% else %}
+    
+<div class="d-flex mb-4" style="color: orange;">
+
+    {# ! Méthod to manage ratings with stars #}
+    <i class="bi bi-star{% if book.rating > 1 %}-fill{% elseif book.rating > 0  %}-half{% else %}{% endif %}"></i>
+    <i class="bi bi-star{% if book.rating > 2 %}-fill{% elseif book.rating > 1  %}-half{% else %}{% endif %}"></i>
+    <i class="bi bi-star{% if book.rating > 3 %}-fill{% elseif book.rating > 2  %}-half{% else %}{% endif %}"></i>
+    <i class="bi bi-star{% if book.rating > 4 %}-fill{% elseif book.rating > 3  %}-half{% else %}{% endif %}"></i>
+    <i class="bi bi-star{% if book.rating == 5 %}-fill{% elseif book.rating > 4 %}-half{% else %}{% endif %}"></i>
+
+</div>
+{% endif %}

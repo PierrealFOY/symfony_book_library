@@ -1,0 +1,18 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}Modifier un livre{% endblock %}
+
+{% block subBody %}
+    <h1>Modifier un livre</h1>
+
+    <div>
+        {{ include('book/_form.html.twig', {'button_label': 'Modifier'}) }}
+        {# {{ include('book/_delete_form.html.twig') }} #}
+    </div>
+
+    <div class="mt-3">
+        <a href="{{ path('app_book_list') }}">back to list</a>
+    </div>
+
+    
+{% endblock %}

@@ -1,0 +1,7 @@
+{% if app.session.get('favorites')[id] is defined %}
+{# si le livre existe dans les favoris bouton pour enlever #}
+    <a href="{{path("app_favorite_remove", {id:id})}}" class="book__favorite fs-1 my-2 mx-3 link-danger"><i class="bi bi-bookmark-x-fill"></i></a>
+{% else %}
+{# sinon bouton pour supprimer #}
+    <a href="{{path("app_favorite_add", {id:id})}}" class="book__favorite fs-1 my-2 mx-3 link-danger"><i class="bi bi-bookmark-plus"></i></a>
+{% endif %}
